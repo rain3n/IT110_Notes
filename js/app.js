@@ -31,10 +31,11 @@ $(document).ready(function() {
 					$.each(Note.list, function(index, value){
 						var date_display;
 
-						if(value.updated_at.toString() == '2000-01-01 00:00:00'){
+						if(value.updated_at == '0000-00-00 00:00:00'){
 							date_display = value.created_at;					
 						}else{
 							date_display = value.updated_at;
+							console.log(date_display);
 						}
 
 						$(".notes_list").append(
