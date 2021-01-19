@@ -21,6 +21,13 @@
 </head>
 
 <body>
+
+  <nav class="navbar fixed-top navbar-light bg-light">
+    <div class="container-fluid justify-content-end pr-3">
+      <button type="button"  class="btn-outline-secondary btn-sm" data-toggle="modal" data-target="#loginModal">Login</button>
+      <button type="button" class="btn-outline-secondary btn-sm m-1" data-toggle="modal" data-target="#registerModal">Register</button>
+    </div>
+  </nav>
   <h1 class="heading">My Notes</h1>
 
   <div class="container">
@@ -67,7 +74,6 @@
     </div>
   </div>
 
-
   <div class="modal fade" id="editNoteModal" tabindex="-1" role="dialog" aria-labelledby="editNoteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -80,11 +86,11 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label for="edit-note-title" class="col-form-label">Title:</label>
+              <label for="edit-note-title" class="col-form-label">Title</label>
               <input type="text" class="form-control" id="edit-note-title">
             </div>
             <div class="form-group">
-              <label for="edit-note-description" class="col-form-label">Description:</label>
+              <label for="edit-note-description" class="col-form-label">Description</label>
               <textarea class="form-control" id="edit-note-description"></textarea>
             </div>
           </form>
@@ -92,6 +98,69 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" id="edit_note">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="edit-note-title" class="col-form-label">Username</label>
+              <input type="text" class="form-control" id="login-username">
+            </div>
+            <div class="form-group">
+              <label for="edit-note-description" class="col-form-label">Password</label>
+              <input type="password" class="form-control" id="enter-password">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="login-btn">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create Account</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="edit-note-title" class="col-form-label">Username</label>
+              <input type="text" class="form-control" id="register-username">
+            </div>
+            <div class="form-group">
+              <label for="edit-note-description" class="col-form-label">Password</label>
+              <input type="password" class="form-control" id="enter-password1">
+            </div>
+            <div class="form-group">
+              <label for="edit-note-description" class="col-form-label">Confirm Password</label>
+              <input type="password" class="form-control" id="enter-password2">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="register-btn">Register</button>
         </div>
       </div>
     </div>

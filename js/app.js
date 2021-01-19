@@ -26,15 +26,28 @@ $(document).ready(function() {
 				url: "php/Note.php",
 				success:  function(data){
 					Note.list = jQuery.parseJSON(data);
+
 					$(".notes_list").empty();
 					$.each(Note.list, function(index, value){
+						var date_display;
+
+						if(value.updated_at.toString() == '2000-01-01 00:00:00'){
+							date_display = value.created_at;					
+						}else{
+							date_display = value.updated_at;
+						}
+
 						$(".notes_list").append(
 							"<li class=\"note\">" 
 						+"<div class=\"card\">"
-						+	"<div class=\"card-header\">" + value.title +"</div>"
+						+	"<div class=\"card-header\">" + value.title
+						+ "<small class=\"float-right\">"
+						+ 		date_display
+						+ "</small>"
+						+"</div>"
 						+	  "<div class=\"card-body clearfix\">"
-						+		"<p class=\"card-text\">"
 						+		  value.description
+						+		"<p class=\"card-text\">"
 						+		"</p>"
 						+		"<button data-note_id=\""+value.id+"\" class=\"pull-right btn btn-primary m-1 edit_note\">"
 						+		  "<i class=\"fa fa-edit\"></i>"
