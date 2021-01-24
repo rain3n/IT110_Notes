@@ -1,15 +1,17 @@
 <?php
     include 'dbconnect.php';
+    session_start();
 
     if($_POST['action']=='add_note'){
         
         try{
             $name = $_POST["data"]["name"];
             $description = $_POST["data"]["description"];
+            $id = $_SESSION['id'];
             //pdo
             $pdo->beginTransaction();
             $prepared_statement = $pdo->prepare("INSERT INTO notes(title, description, user_id, status) VALUES (?,?,?,?)");
-            $prepared_statement->execute(array($name, $description, 1, 1));
+            $prepared_statement->execute(array($name, $description, $id, 1));
             $pdo->commit();
 
         }catch(Exception $e){
@@ -47,7 +49,6 @@
     }
     else if($_POST['action']=='edit_note'){
         try{
-            
             $pdo->beginTransaction();
             $prepared_statement = $pdo->prepare("UPDATE notes SET title=?, description=?, updated_at = ? WHERE id = ?");
             $prepared_statement->execute(array($_POST['data']['name'], $_POST['data']['description'], date("Y-m-d H:i:s"), $_POST['data']['id']));

@@ -1,10 +1,13 @@
+<?php session_start(); ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Morales - Notes Apps</title>
+  <title>Notes Apps</title>
 
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
@@ -12,28 +15,45 @@
 
   <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- jQuery and JS bundle w/ Popper.js -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
-  <script type="text/javascript" src="js/app.js"></script>
 
 </head>
 
 <body>
 
   <nav class="navbar fixed-top navbar-light bg-light">
+
     <div class="container-fluid justify-content-end pr-3">
-      <button type="button"  class="btn-outline-secondary btn-sm" data-toggle="modal" data-target="#loginModal">Login</button>
-      <button type="button" class="btn-outline-secondary btn-sm m-1" data-toggle="modal" data-target="#registerModal">Register</button>
+      <?php
+      if (isset($_SESSION['userloggedin'])) {
+        echo $_SESSION["userfullname"];
+        $userId = $_SESSION["id"];
+        echo '<a href="php/logout.php" type="button" id="nav-logout" class="btn btn-outline-secondary btn-sm m-1 ml-3">Logout</a>';
+        echo "<script>var user=$userId </script>";
+      } else {
+        $userId = 0;
+        echo "<script>var user=$userId </script>";
+        echo '<a href="php/login.php" type="button" id="nav-login" class="btn btn-outline-secondary btn-sm">Login</a>
+          <a href="php/register.php" type="button" id="nav-register" class="btn btn-outline-secondary btn-sm m-1">Register</a>';
+      }
+      ?>
     </div>
   </nav>
+
+
+
   <h1 class="heading">My Notes</h1>
 
   <div class="container">
     <div class="row">
-      <button class="btn btn-primary col-1 offset-10" data-toggle="modal" data-target="#addNoteModal">
-        <i class="fa fa-plus"> </i>
+
+
+      <button class="btn btn-primary col-1 offset-10" data-toggle="modal" data-target="#addNoteModal" 
+      <?php
+      if ($userId == 0)
+      echo 'disabled'; ?>>  
+      <i class="fa fa-plus"> </i>
       </button>
     </div>
     <div class="notes">
@@ -103,69 +123,10 @@
     </div>
   </div>
 
-  
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="edit-note-title" class="col-form-label">Username</label>
-              <input type="text" class="form-control" id="login-username">
-            </div>
-            <div class="form-group">
-              <label for="edit-note-description" class="col-form-label">Password</label>
-              <input type="password" class="form-control" id="enter-password">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" id="login-btn">Login</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Create Account</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="edit-note-title" class="col-form-label">Username</label>
-              <input type="text" class="form-control" id="register-username">
-            </div>
-            <div class="form-group">
-              <label for="edit-note-description" class="col-form-label">Password</label>
-              <input type="password" class="form-control" id="enter-password1">
-            </div>
-            <div class="form-group">
-              <label for="edit-note-description" class="col-form-label">Confirm Password</label>
-              <input type="password" class="form-control" id="enter-password2">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" id="register-btn">Register</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!---MODALS---->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/app.js"></script>
 
 
 </body>

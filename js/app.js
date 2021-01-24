@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var user = 1;
+	
 	var Note = {
 		add: function(name, description){
 			var new_note = {
@@ -25,17 +25,15 @@ $(document).ready(function() {
 				data: { user_id: user_id, action:'get_notes'},
 				url: "php/Note.php",
 				success:  function(data){
-					Note.list = jQuery.parseJSON(data);
 
+					Note.list = jQuery.parseJSON(data);
 					$(".notes_list").empty();
 					$.each(Note.list, function(index, value){
 						var date_display;
-
 						if(value.updated_at == '0000-00-00 00:00:00'){
 							date_display = value.created_at;					
 						}else{
 							date_display = value.updated_at;
-							console.log(date_display);
 						}
 
 						$(".notes_list").append(
@@ -101,8 +99,8 @@ $(document).ready(function() {
 			};
 		}
 	};
-
-	Note.get(user)
+	if(user != 0)
+		Note.get(user);
 
 	$("#add_note").click(function(){
 		Note.add( $("#note-title").val(), $("#note-description").val() );
