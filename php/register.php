@@ -98,7 +98,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="d-flex justify-content-center mt-5">
 
-
         <form class="form-group" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
             <h2>Sign Up</h2>
@@ -127,6 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="input_class mt-3">
                     <input type="submit" class="btn btn-primary" value="Submit">
                     <input type="reset" class="btn btn-secondary" value="Reset">
+                    <a class="offset-3" href="login.php">Login</a>
                 </div>
             </div>
         </form>

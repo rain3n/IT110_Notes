@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="d-flex justify-content-center mt-5">
         <form class="form-group" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <h2>Sign In</h2>
-            <p>Please enter your id and password to sign in.</p>
+            <p>Please enter your username and password to sign in.</p>
             <div class="label_class"><label>Username</label></div>
             <div class="input_class"><input class="form-control" type="text" name="userinput" value="<?php echo $userinput; ?>" required></div>
             <span><?php echo $userinput_error; ?></span>
@@ -75,6 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="input_class mt-3">
                 <input type="submit" class="btn btn-primary" value="Login">
                 <input type="reset" class="btn btn-secondary" value="Reset">
+                <a class="offset-2" href="register.php">Create a new account</a>
              </div>
 
         </form>
